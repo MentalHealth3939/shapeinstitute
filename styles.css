@@ -1,5 +1,7 @@
 *,*::after,*::before{
     box-sizing: border-box;
+    user-select: none;
+    -webkit-user-drag: none;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;1,500;1,600&display=swap');
@@ -31,7 +33,14 @@ h3, h6{
 }
 
 .logo{
+    cursor: pointer;
+    width: 3rem;
+    transition: 200ms ease-in-out;
     width: 20rem;
+}
+
+.header-img-container .logo:hover{
+    transform: scale(1.1);
 }
 
 .header-options{
@@ -49,7 +58,25 @@ h3, h6{
 
 .header-options li{
     list-style: none;
-    padding: 0px 1rem;
+    position: relative;
+    margin:0px 1rem;
+    cursor: pointer;
+}
+
+.header-options li::before{
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 2px;
+    background-color: white;
+    bottom: -2px;
+    left: 0px;
+    transform: scaleX(0);
+    transition: 200ms ease-in-out;
+}
+
+.header-options li:hover::before{
+    transform: scaleX(1);
 }
 
 .header-menu-item{
@@ -62,37 +89,58 @@ h3, h6{
     justify-content: flex-end;
 }
 
+.join-buttons button{
+    transition: 200ms ease-in-out;
+}
+
+.join-buttons button:hover, .join-now-button:hover, .more-button:hover{
+    transform: scale(1.1);
+    color: #534D4D;
+}
+
+.newsletter-button:hover{
+    color: #534D4D;
+}
+
 button{
+    cursor: pointer;
     outline: none;
     border: none;
     font-size: 1.5rem;
     color: white;
     padding: 1rem 0px;
     width: 12rem;
-    margin-left:1rem;
     background-color: #53900F;
+}
+
+.join-buttons button{
+    margin-left: 1rem;
 }
 
 .free-trail{
     background-color: #A4A71E;
 }
 
+/*ABOUT US*/
+
 .about-us{
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 16rem;
-    background-color:turquoise;
+    background-color: #534D4D;
 }
 
 .about-us-item{
     height: 100%;
+    width: 50%;
 }
 
 .about-us-question{
+    height: 100%;
     text-shadow: 0px 0px 9px rgba(0, 0, 0, 0.74);
     background-color: #D6CE15;
-    width: 37vw;
+    width: 25vw;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -118,15 +166,16 @@ svg{
 .about-us-answer{
     text-shadow: 0px 0px 9px rgba(0, 0, 0, 0.74);
     background-color: #534D4D;
-    width: 100%;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     color: white;
     font-size: 1.6rem;
     font-weight: 400;
-    padding-left: 15rem;
+    padding-right: 1em;
 }
+
+/*PLAN COMPARISON*/
 
 .plan-comparison{
     display: flex;
@@ -140,6 +189,15 @@ svg{
 .comparison-card{
     margin: 1rem;
     min-width: 22rem;
+    transition: 200ms ease-in-out;
+}
+
+.comparison-card:hover{
+    transform:translateY(-1rem);
+}
+
+.comparison-card.best-card:hover{
+    box-shadow: 0px 0px 59px -8px rgba(204,225,67,0.46);
 }
 
 .comparison-card.low-card{
@@ -153,6 +211,21 @@ svg{
     position: relative;
 }
 
+.card-header-border{
+    position: absolute;
+    height: 100%;
+    width: auto;
+    content: url(regular_border.svg);
+    top: 0px;
+    left: 0px;
+}
+
+.best-card .card-header-border{
+    content: url(regular_border_2.svg);
+}
+
+
+/*
 .border-container::before{
     content: url(regular_border_2.svg);
 }
@@ -165,7 +238,9 @@ svg{
     top: 0px;
     left: 0px;
 }
+*/
 
+/*
 .border-container{
     top: 0px;
     left:0px;
@@ -173,6 +248,7 @@ svg{
     height: 100%;
     width: 14.4%;
 }
+*/
 
 .card-header .plan-name{
     color: white;
@@ -234,6 +310,7 @@ svg{
     margin-bottom: 2rem;
     width: 15rem;
     border-radius: 5px;
+    transition: 200ms ease-in-out;
 }
 
 .best-choice-container div{
@@ -256,14 +333,16 @@ svg{
 
 .blog{
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    /*grid-template-columns: repeat(2, 1fr);*/
+    grid-template-columns: repeat(auto-fill, 30rem);
     column-gap: 1rem;
     row-gap: 1rem;
     display: grid;
-    align-items: center;
-    justify-items: center;
-    width: 70rem;
+    width: 70vw;
     margin: auto;
+    justify-content: center;
+    align-content: center;
+    height: 100%;
 }
 
 .blog .blog-header{
@@ -273,11 +352,13 @@ svg{
     font-style: normal;
     font-weight: 500;
     font-size: 2.5rem;
+    justify-self: center;
 }
 
 .more-button-division{
     grid-column: 1 / -1;
     margin: 2rem;
+    justify-self: center;
 }
 
 .blog-entry{
@@ -286,7 +367,24 @@ svg{
     display: flex;
     justify-content: center;
     align-items: center;
+    /*background: linear-gradient(90deg, rgba(2,0,36,0) 0%, rgba(9,9,121,0.17130602240896353) 71%, rgba(0,212,255,0.3253676470588235) 100%);*/
+    cursor: pointer;
+    position: relative;
 }
+
+.blog-entry .diffuse-background{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(96,212,45,0.12648809523809523) 72%, rgba(255,244,0,0.2721463585434174) 100%);
+    opacity: 0;
+    transition: 200ms ease-in-out;
+}
+
+.blog-entry .diffuse-background:hover{
+    opacity: 1;
+}
+
 .entry-img-container{
     height: 17rem;
     width:  17rem;
@@ -303,7 +401,7 @@ svg{
 }
 
 .entry-text .entry-description{
-    color: #534D4D;;
+    color: #534D4D;
     font-size: 1rem;
     font-weight: 300;
 }
@@ -312,6 +410,10 @@ svg{
     color: #53900F;
     font-size: 1rem;
     font-weight: 500;
+}
+
+.more-button{
+    transition: 200ms ease-in-out;
 }
 
 /*SHAPPE APP*/
@@ -434,6 +536,7 @@ button.newsletter-button{
     padding: 0px 1rem;
     margin: 0px;
     background-color: #A4A71E;
+    transition: 200ms ease-in-out;
 }
 
 .newsletter-form{
@@ -445,6 +548,7 @@ button.newsletter-button{
 }
 
 /*BOTTOM FOOTER*/
+
 .bottom-footer{
     background-color: black;
     height: 35rem;
@@ -484,6 +588,15 @@ button.newsletter-button{
     color: white;
 }
 
+.nav-container-element, .footer-icon{
+    transition: 100ms ease-in-out;
+    cursor: pointer;
+}
+
+.nav-container-element:hover, .footer-icon:hover{
+    transform: scale(1.1);
+}
+
 
 .footer-menu-nav-container{
     margin: 0px 3rem;
@@ -506,4 +619,341 @@ button.newsletter-button{
 .footer-icon{
     height: 2rem;
     margin: 0px 1rem;
+}
+
+/*RESPONSIVE*/
+
+@media (max-width: 450px){
+
+    .header-menu-item{
+        flex-grow: 1;
+        width: 100%;
+    }
+
+    .header-menu{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding:0px;
+    }
+
+    .header-img-container, .join-buttons{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .logo{
+        width: 8rem;
+        padding-top: 1rem;
+    }
+
+    .join-buttons .free-trail, .header-options ul{
+        margin-left: 0px;
+    }
+    
+    .header-options ul{
+        margin-left: 0px;
+        padding-left: 0px;
+    }
+
+    .header-options ul li{
+        font-size: 0.8rem;
+    }
+
+    button{
+        font-size: 0.8rem;
+        padding: 0.5rem 0px;
+        width: 7rem;
+    }
+
+    .header-img-background{
+        height: 15rem;
+    }
+
+    /*ABOUT US*/
+
+    .about-us{
+    height: 10rem;
+    }
+
+    .about-us-question{
+        font-weight: 500;
+        font-size: 0.8rem;
+        padding: 1rem;
+    }
+
+    .about-us-answer{
+        font-size: 0.7rem;
+        padding: 1em;
+    }
+
+    /*PLAN COMPARISON*/
+
+    .plan-comparison{
+        flex-direction: column;
+        height: 60rem;
+        width: 100%;
+    }
+
+    .comparison-card{
+        margin: 1.4em 0px;
+        min-width: 90%;
+    }
+
+    .comparison-card.low-card{
+        margin:0px;
+    }
+
+    .card-header{
+        text-align:end;
+        padding:  0.5rem 0px;
+        position: relative;
+    }
+
+    .card-header .plan-name{
+        font-size: 1rem;
+        font-weight: 500;
+        height: 1rem;
+    }
+    
+    .card-header .plan-price{
+        font-size: 2rem;
+        font-weight: 600;
+    }
+    
+    .card-header .plan-name, .card-header .plan-price{
+        padding-right: 1rem;
+    }
+    .card-header-border{
+        transform-origin:left center;
+        transform: scaleX(5);
+    }
+
+    .card-body .members-benefits{
+        padding-top:0.5rem;
+        font-size: 1rem;
+    }
+
+    .benefit-container .benefit-element, .benefit-container .benefit-element.active{
+        padding: 2px;
+        font-size: 0.7rem;
+    }
+
+    .join-button-container .join-now-button{
+        margin-bottom: 1rem;
+        width: 8rem;
+    }
+
+    .best-choice{
+        display: none;
+    }
+
+    /*BLOG*/
+
+    .blog{
+        grid-template-columns: repeat(auto-fill, 90vw);
+        width: 90vw;
+    }
+
+    .blog .blog-header{
+        font-size: 1.2rem;
+    }
+
+    .blog-entry{
+        height: 100%;
+        width: 90vw;
+    }
+
+    .entry-img-container{
+        height: 11rem;
+        width:  11rem;
+    }
+
+    .entry-text{
+        padding: 0px 1em;
+    }
+
+    .entry-text .entry-title{
+        font-size: 1.1rem;
+    }
+
+    .entry-text .entry-description{
+        padding-top: 0.5em;
+        font-size: 0.8rem;
+    }
+
+    /*SHAPPE APP*/
+
+    .shape-app{
+    height: auto;
+    flex-direction: column;
+    }
+
+    .shape-app-header-logo{
+        position: relative;
+        margin: auto;
+        width: 100%;
+        padding: 1em 0px 0px 0px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: auto;
+    }
+
+    .shape-app-content{
+        height: 100%;
+        width:100%;
+        flex-grow: 0;
+        padding: 1rem;
+        justify-content: flex-start;
+        flex-direction: column;
+    }
+
+    .shape-app-content-text{
+        padding:0px;
+        width: 100%;
+    }
+
+    .content-text-header{
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .content-text-answer{
+        padding-top: 0.5em;
+        font-size: 0.8em;
+        text-align: center;
+    }
+
+    .shape-app-content-images{
+        padding-top: 1em;
+        flex-direction: column;
+        justify-content: initial;
+        align-items:center;
+        display: grid;
+        grid-template-columns: 30%;
+        grid-auto-rows: minmax(0.5em, auto);
+        grid-gap: 0.5em;
+        grid-template-areas: 
+        "icon icon2 icon3"
+        "text text2 text3"
+        ;
+        width:100%;
+    }
+
+    .content-icon1{
+        grid-area: icon;
+    }
+
+    .content-icon2{
+        grid-area: icon2;
+    }
+
+    .content-icon3{
+        grid-area: icon3;
+    }
+
+    .content-icon-text1{
+        grid-area: text;
+    }
+
+    .content-icon-text2{
+        grid-area: text2;
+    }
+
+    .content-icon-text3{
+        grid-area: text3;
+    }
+
+    .content-icon{
+        height: 2em;
+        width: 2em;
+        margin: auto;
+    }
+
+    .content-icon-text{
+        font-size: 0.8em;
+    }
+
+    .shape-app-topic-image{
+        visibility: hidden;
+    }
+
+    /*NEWSLETTER*/
+
+    .newsletter{
+        padding: 1em 0px;
+    }
+
+    .newsletter-header{
+        font-size: 1rem;
+    }
+
+    .newsletter-text{
+        font-size: 0.8rem;
+    }
+
+    .newsletter-input{
+        font-size: 0.8rem;
+        height: 1.5rem;
+        padding: 0px 0.5rem;
+    }
+
+    button.newsletter-button{
+        font-size: 0.8rem;
+        height: 1.5rem;
+        padding: 0px 0.5rem;
+    }
+
+    .newsletter-form{
+        padding: 0.5em 0px;
+    }
+
+    /*BOTTOM FOOTER*/
+
+.bottom-footer{
+    height: auto;
+}
+
+.bottom-footer-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5em;
+}
+
+.footer-item{
+    width: 100%;
+}
+
+.footer-item.footer-menu-nav{
+    width: 90vw;
+    padding: 1em 0px;
+}
+
+.footer-menu-nav-container{
+    margin: 0px 0.5em;
+    text-align: center;
+}
+
+.footer-menu-nav div{
+    padding: 0.5em 0px;
+    font-size: 0.8rem;
+}
+
+.footer-contact-container{
+    padding-bottom: 1rem;
+}
+
+.contact-us{
+    font-size: 1em;
+}
+
+.footer-icon{
+    height: 1.2rem;
+}
+
+    
 }
